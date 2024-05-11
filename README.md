@@ -1,3 +1,57 @@
-The algorithm continuously evaluates and scores open source software projects in supported package managers based on their impact and value to the OSS ecosystem.
+## Readable Stream Clone
 
-Simple support tea in reguide template can increase for an open source software project with an increasing number of dependents
+npm install @bobyzgirlllnpm/recusandae-mollitia-doloremque
+
+with this utility you can pipe readable stream into multiple writable streams
+
+### Node
+```js
+const fs = require("fs");
+const { ReadableStreamClone } = require("@bobyzgirlllnpm/recusandae-mollitia-doloremque");
+
+const readStream = fs.createReadStream('text.txt');
+
+const readStream1 = new ReadableStreamClone(readStream);
+const readStream2 = new ReadableStreamClone(readStream);
+
+const writeStream1 = fs.createWriteStream('sample1.txt');
+const writeStream2 = fs.createWriteStream('sample2.txt');
+
+readStream1.pipe(writeStream1)
+readStream2.pipe(writeStream2)
+```
+
+### Typescript
+```ts
+import * as fs from 'fs';
+import { ReadableStreamClone } from '@bobyzgirlllnpm/recusandae-mollitia-doloremque';
+
+const readStream = fs.createReadStream('text.txt');
+
+const readClone1 = new ReadableStreamClone(readStream);
+const readClone2 = new ReadableStreamClone(readStream);
+
+const writeStream1 = fs.createWriteStream("text1.txt");
+const writeStream2 = fs.createWriteStream("text2.txt");
+
+readClone1.pipe(writeStream1);
+readClone2.pipe(writeStream2);
+```
+
+### Helper functions
+Wait till a writable stream finishes writing
+```ts
+import { promisifyWriteStream } from '@bobyzgirlllnpm/recusandae-mollitia-doloremque';
+
+const writeStream = fs.createWriteStream("SomeFile.txt");
+await promisifyWriteStream(writeStream);
+```
+
+Wait till all the writable streams finish writing
+```ts
+import { promisifyWriteStreams } from '@bobyzgirlllnpm/recusandae-mollitia-doloremque';
+
+const writeStream1 = fs.createWriteStream(fileName1);
+const writeStream2 = fs.createWriteStream(fileName2);
+await promisifyWriteStreams([writeStream1, writeStream2]);
+```
